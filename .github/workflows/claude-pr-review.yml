@@ -30,7 +30,7 @@ jobs:
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          claude_args: --permission-mode allow-all
+          claude_args: --permission-mode bypassPermissions
           prompt: |
             Review the changes in this pull request by:
             1. Use `gh pr view --json files` to see what files changed
