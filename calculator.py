@@ -11,6 +11,7 @@ def multiply(a, b):
     return a * b
 
 def calculate_average(numbers):
+    print("Calculating average...")
     total = 0
     for num in numbers:
         total += num
