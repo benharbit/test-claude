@@ -1,0 +1,27 @@
+name: Claude PR Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  issue_comment:
+    types: [created]
+
+jobs:
+  claude-review:
+    # Only run on PR comments or PR events
+    if: |
+      (github.event_name == 'issue_comment' && github.event.issue.pull_request) ||
+      github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
+
+    steps:
+      - name: Run Claude Code Review
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
