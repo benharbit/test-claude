@@ -20,13 +20,22 @@ jobs:
       issues: write
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Run Claude Code Review
         uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          claude_args: --permission-mode bypassPermissions
           prompt: |
-            Use the /review slash command to review the current pull request.
+            Review the changes in this pull request by:
+            1. Use `gh pr view --json files` to see what files changed
+            2. Use `gh pr diff` to see the diff
+            3. Read the changed files and analyze them
 
             Focus your review on:
             - Code quality and best practices
@@ -35,4 +44,4 @@ jobs:
             - Performance implications
             - Suggestions for improvement
 
-            Post your feedback as PR review comments on specific lines of code where applicable.
+            Post detailed review comments using `gh pr review` with inline comments on specific issues you find.

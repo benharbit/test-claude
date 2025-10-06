@@ -12,6 +12,7 @@ def multiply(a, b):
 
 def calculate_average(numbers):
     print("Calculating average...")
+    print("This is a debug statement yes.")
     total = 0
     for num in numbers:
         total += num
