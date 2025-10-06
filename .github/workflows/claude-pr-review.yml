@@ -26,11 +26,13 @@ jobs:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           prompt: |
-            Review this pull request focusing on:
+            Use the /review slash command to review the current pull request.
+
+            Focus your review on:
             - Code quality and best practices
             - Potential bugs or issues
             - Security concerns
             - Performance implications
             - Suggestions for improvement
 
-            Provide constructive feedback as PR review comments.
+            Post your feedback as PR review comments on specific lines of code where applicable.
